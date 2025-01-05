@@ -9,19 +9,6 @@ export default function TodoItem({
   const [isEditing, setEditing] = useState(false);
   const [todo, setTodo] = useState(item.todo);
 
-  function handleEditClick() {
-    setEditing(true);
-  }
-
-  function handleEditBlur() {
-    setEditing(false);
-    onItemEdit(item.id, todo);
-  }
-
-  function inputChange(event) {
-    setTodo(event.target.value);
-  }
-
   return (
     <li>
       <div className="item-card">
@@ -31,22 +18,11 @@ export default function TodoItem({
         >
           {item.completed ? "check_circle" : "radio_button_unchecked"}
         </span>
-        {isEditing ? (
-          <input
-            onChange={inputChange}
-            onBlur={handleEditBlur}
-            value={todo}
-            autoFocus
-          ></input>
-        ) : (
-          <p
-            onClick={handleEditClick}
-            className={item.completed ? "completed" : undefined}
-          >
-            {todo}
-          </p>
-        )}
-
+        <input
+          value={item.todo}
+          onChange={(e) => onItemEdit(item.id, e.target.value)}
+          className={item.completed ? "completed" : undefined}
+        />
         <span
           className="material-symbols-outlined icon"
           onClick={() => onItemDeletion(item.id)}

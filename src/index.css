@@ -120,6 +120,8 @@ ul {
 
 .item-card input {
   font-size: 1rem;
+  border: none;
+  background: none;
 }
 
 .item-card input:focus {

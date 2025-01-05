@@ -7,7 +7,10 @@ import DATA from "../data.js";
 
 import { createId } from "../utilities/utilities.js";
 
-let ITEMS = [...DATA];
+const Pages = {
+  NOT_DONE: "not-done",
+  DONE: "done",
+};
 
 export default function TodoCard() {
   const [currentPage, setCurrentPage] = useState("not-done");
@@ -15,7 +18,7 @@ export default function TodoCard() {
 
   const todoList = useMemo(() => {
     return items.filter((item) =>
-      currentPage === "not-done" ? !item.completed : item.completed
+      currentPage === Pages.NOT_DONE ? !item.completed : item.completed
     );
   }, [items, currentPage]);
 
@@ -36,7 +39,7 @@ export default function TodoCard() {
   }
 
   function handleAddItem() {
-    handlePageChange("not-done");
+    handlePageChange(Pages.NOT_DONE);
     const newItem = {
       id: createId(items),
       todo: `Task #${[...items].filter((item) => !item.completed).length + 1}`,

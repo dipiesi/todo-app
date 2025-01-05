@@ -13,7 +13,7 @@ const Pages = {
 };
 
 export default function TodoCard() {
-  const [currentPage, setCurrentPage] = useState("not-done");
+  const [currentPage, setCurrentPage] = useState(Pages.NOT_DONE);
   const [items, setItems] = useState([...DATA]);
 
   const todoList = useMemo(() => {
@@ -39,13 +39,13 @@ export default function TodoCard() {
   }
 
   function handleAddItem() {
-    handlePageChange(Pages.NOT_DONE);
     const newItem = {
       id: createId(items),
       todo: `Task #${[...items].filter((item) => !item.completed).length + 1}`,
       completed: false,
     };
     setItems((prevList) => [...prevList, newItem]);
+    setCurrentPage(Pages.NOT_DONE);
   }
 
   function handleEditItem(itemId, newTodo) {

@@ -6,9 +6,6 @@ export default function TodoItem({
   onItemDeletion,
   onItemEdit,
 }) {
-  const [isEditing, setEditing] = useState(false);
-  const [todo, setTodo] = useState(item.todo);
-
   return (
     <li>
       <div className="item-card">

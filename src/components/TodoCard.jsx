@@ -5,30 +5,37 @@ import TodoList from "./TodoList";
 import BottomBar from "./BottomBar.jsx";
 import ITEMS from "../data.js";
 
+let items = ITEMS;
+
 export default function TodoCard() {
   const [currentPage, setCurrentPage] = useState("not-done");
   const [todoList, setTodoList] = useState(
-    ITEMS.filter((item) => !item.completed)
+    items.filter((item) => !item.completed)
   );
 
   function handlePageChange(newPage) {
     setCurrentPage(newPage);
     if (newPage === "not-done") {
-      setTodoList(ITEMS.filter((item) => !item.completed));
+      setTodoList(items.filter((item) => !item.completed));
     } else if (newPage === "done") {
-      setTodoList(ITEMS.filter((item) => item.completed));
+      setTodoList(items.filter((item) => item.completed));
     }
   }
 
   function handleItemStateChange(itemId) {
-    const item = ITEMS.filter((item) => item.id === itemId)[0];
+    const item = items.find((item) => item.id === itemId);
     item.completed = !item.completed;
 
     if (currentPage === "not-done") {
-      setTodoList(ITEMS.filter((item) => !item.completed));
+      setTodoList(items.filter((item) => !item.completed));
     } else if (currentPage === "done") {
-      setTodoList(ITEMS.filter((item) => item.completed));
+      setTodoList(items.filter((item) => item.completed));
     }
+  }
+
+  function handleItemDeletion(itemId) {
+    items = items.filter((item) => item.id !== itemId);
+    setTodoList((prevList) => prevList.filter((item) => item.id !== itemId));
   }
 
   return (
@@ -37,7 +44,11 @@ export default function TodoCard() {
         onPageChange={handlePageChange}
         currentPage={currentPage}
       />
-      <TodoList list={todoList} onItemStateChange={handleItemStateChange} />
+      <TodoList
+        list={todoList}
+        onItemStateChange={handleItemStateChange}
+        onItemDeletion={handleItemDeletion}
+      />
       <BottomBar />
     </section>
   );

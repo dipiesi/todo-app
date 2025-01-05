@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ list, onItemStateChange }) {
+export default function TodoList({ list, onItemStateChange, onItemDeletion }) {
   return (
     <ul>
       {list.map((item) => (
@@ -8,6 +8,7 @@ export default function TodoList({ list, onItemStateChange }) {
           key={item.id}
           item={item}
           onItemStateChange={onItemStateChange}
+          onItemDeletion={onItemDeletion}
         />
       ))}
     </ul>

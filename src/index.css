@@ -2,6 +2,14 @@
 
 /* Logo: Barrio / Text: Nunito Sans */
 
+:root {
+  --crystal-bell: hsl(189, 82%, 27%);
+  --aqueduct: hsl(185, 38%, 56%);
+  --aqueduct-50: hsla(185, 38%, 56%, 0.5);
+  --porpoise-place: hsl(189, 82%, 27%);
+  --porpoise-place-50: hsla(189, 82%, 27%, 0.5);
+}
+
 *,
 *::after,
 *::before {
@@ -20,11 +28,99 @@ body {
   align-items: center;
   height: 100vh;
   padding-top: 5rem;
-  background-color: hsl(185, 38%, 56%);
+  background-color: var(--porpoise-place);
 }
 
 header {
   font-family: "Barrio", sans-serif;
   font-size: 3rem;
   color: hsl(0, 0%, 94%);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.icon {
+  font-size: 2rem;
+  color: hsl(185, 38%, 56%);
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: var(--aqueduct-50);
+  cursor: pointer;
+}
+
+.list-container {
+  background-color: hsl(0, 0%, 94%);
+  min-height: 60vh;
+  min-width: 350px;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.pagination-btn {
+  border: none;
+  padding: 0.8rem 1rem;
+  margin: 0 1rem;
+}
+.pagination-btn:hover .icon {
+  color: var(--aqueduct-50);
+}
+
+.pagination-btn.active {
+  border-bottom: 2px solid var(--aqueduct);
+}
+
+.pagination-btn:hover.active {
+  border-bottom: 2px solid var(--aqueduct-50);
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0.5rem 0.8rem 0.5rem;
+}
+
+.item-card p {
+  width: 100%;
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--porpoise-place);
+  text-align: left;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.item-card .completed {
+  text-decoration: line-through;
+  color: var(--porpoise-place-50);
+}
+
+.bottom-bar {
+  padding: 0.8rem 0.5rem;
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--porpoise-place);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border-top: 2px solid var(--aqueduct-50); */
+}
+
+li {
+  list-style: none;
 }

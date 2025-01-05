@@ -100,7 +100,8 @@ ul {
   margin: 0 0.5rem 0.8rem 0.5rem;
 }
 
-.item-card p {
+.item-card p,
+.item-card input {
   width: 100%;
   font-family: "Nunito Sans", sans-serif;
   color: var(--porpoise-place);
@@ -112,6 +113,16 @@ ul {
 .item-card .completed {
   text-decoration: line-through;
   color: var(--porpoise-place-50);
+}
+
+.item-card input {
+  font-size: 1rem;
+}
+
+.item-card input:focus {
+  outline: none;
+  border: none;
+  background: none;
 }
 
 .bottom-bar {

@@ -50,6 +50,16 @@ export default function TodoCard() {
     handlePageChange("not-done");
   }
 
+  function handleEditItem(itemId, newTodo) {
+    const item = ITEMS.find((item) => item.id === itemId);
+    item.todo = newTodo;
+    if (currentPage === "not-done") {
+      setTodoList(ITEMS.filter((item) => !item.completed));
+    } else if (currentPage === "done") {
+      setTodoList(ITEMS.filter((item) => item.completed));
+    }
+  }
+
   return (
     <section className="list-container">
       <PaginationButtons
@@ -60,6 +70,7 @@ export default function TodoCard() {
         list={todoList}
         onItemStateChange={handleItemStateChange}
         onItemDeletion={handleItemDeletion}
+        onItemEdit={handleEditItem}
       />
       <BottomBar onAddItem={handleAddItem} />
     </section>

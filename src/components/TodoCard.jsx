@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import PaginationButtons from "./PaginationButtons";
 import TodoList from "./TodoList";
@@ -11,53 +11,46 @@ let ITEMS = [...DATA];
 
 export default function TodoCard() {
   const [currentPage, setCurrentPage] = useState("not-done");
-  const [todoList, setTodoList] = useState(
-    ITEMS.filter((item) => !item.completed)
-  );
+  const [items, setItems] = useState([...DATA]);
+
+  const todoList = useMemo(() => {
+    return items.filter((item) =>
+      currentPage === "not-done" ? !item.completed : item.completed
+    );
+  }, [items, currentPage]);
 
   function handlePageChange(newPage) {
     setCurrentPage(newPage);
-    if (newPage === "not-done") {
-      setTodoList(ITEMS.filter((item) => !item.completed));
-    } else if (newPage === "done") {
-      setTodoList(ITEMS.filter((item) => item.completed));
-    }
   }
 
   function handleItemStateChange(itemId) {
-    const item = ITEMS.find((item) => item.id === itemId);
-    item.completed = !item.completed;
-
-    if (currentPage === "not-done") {
-      setTodoList(ITEMS.filter((item) => !item.completed));
-    } else if (currentPage === "done") {
-      setTodoList(ITEMS.filter((item) => item.completed));
-    }
+    setItems((prevList) => {
+      const item = items.find((item) => item.id === itemId);
+      item.completed = !item.completed;
+      return [...prevList];
+    });
   }
 
   function handleItemDeletion(itemId) {
-    ITEMS = ITEMS.filter((item) => item.id !== itemId);
-    setTodoList((prevList) => prevList.filter((item) => item.id !== itemId));
+    setItems((prevList) => prevList.filter((item) => item.id !== itemId));
   }
 
   function handleAddItem() {
+    handlePageChange("not-done");
     const newItem = {
-      id: createId(ITEMS),
-      todo: `Task #${ITEMS.length}`,
+      id: createId(items),
+      todo: `Task #${[...items].filter((item) => !item.completed).length + 1}`,
       completed: false,
     };
-    ITEMS.push(newItem);
-    handlePageChange("not-done");
+    setItems((prevList) => [...prevList, newItem]);
   }
 
   function handleEditItem(itemId, newTodo) {
-    const item = ITEMS.find((item) => item.id === itemId);
-    item.todo = newTodo;
-    if (currentPage === "not-done") {
-      setTodoList(ITEMS.filter((item) => !item.completed));
-    } else if (currentPage === "done") {
-      setTodoList(ITEMS.filter((item) => item.completed));
-    }
+    setItems((prevList) => {
+      const item = items.find((item) => item.id === itemId);
+      item.todo = newTodo;
+      return [...prevList];
+    });
   }
 
   return (

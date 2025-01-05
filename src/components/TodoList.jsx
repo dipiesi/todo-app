@@ -1,10 +1,14 @@
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ list }) {
+export default function TodoList({ list, onItemStateChange }) {
   return (
     <ul>
-      {list.map((item, itemIndex) => (
-        <TodoItem key={itemIndex} item={item} />
+      {list.map((item) => (
+        <TodoItem
+          key={item.id}
+          item={item}
+          onItemStateChange={onItemStateChange}
+        />
       ))}
     </ul>
   );

@@ -7,17 +7,28 @@ import ITEMS from "../data.js";
 
 export default function TodoCard() {
   const [currentPage, setCurrentPage] = useState("not-done");
+  const [todoList, setTodoList] = useState(
+    ITEMS.filter((item) => !item.completed)
+  );
 
   function handlePageChange(newPage) {
     setCurrentPage(newPage);
+    if (newPage === "not-done") {
+      setTodoList(ITEMS.filter((item) => !item.completed));
+    } else if (newPage === "done") {
+      setTodoList(ITEMS.filter((item) => item.completed));
+    }
   }
 
-  let listItems;
+  function handleItemStateChange(itemId) {
+    const item = ITEMS.filter((item) => item.id === itemId)[0];
+    item.completed = !item.completed;
 
-  if (currentPage === "done") {
-    listItems = ITEMS.filter((item) => item.completed);
-  } else {
-    listItems = ITEMS.filter((item) => !item.completed);
+    if (currentPage === "not-done") {
+      setTodoList(ITEMS.filter((item) => !item.completed));
+    } else if (currentPage === "done") {
+      setTodoList(ITEMS.filter((item) => item.completed));
+    }
   }
 
   return (
@@ -26,7 +37,7 @@ export default function TodoCard() {
         onPageChange={handlePageChange}
         currentPage={currentPage}
       />
-      <TodoList list={listItems} />
+      <TodoList list={todoList} onItemStateChange={handleItemStateChange} />
       <BottomBar />
     </section>
   );

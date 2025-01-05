@@ -70,7 +70,10 @@ header {
   border: none;
   padding: 0.8rem 1rem;
   margin: 0 1rem;
+  border-bottom: 2px solid var(--crystal-bell);
+  transition: border-color 0.1s ease;
 }
+
 .pagination-btn:hover .icon {
   color: var(--aqueduct-50);
 }
@@ -79,7 +82,7 @@ header {
   border-bottom: 2px solid var(--aqueduct);
 }
 
-.pagination-btn:hover.active {
+.pagination-btn.active:hover {
   border-bottom: 2px solid var(--aqueduct-50);
 }
 

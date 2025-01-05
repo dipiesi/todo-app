@@ -3,7 +3,7 @@
 /* Logo: Barrio / Text: Nunito Sans */
 
 :root {
-  --crystal-bell: hsl(189, 82%, 27%);
+  --crystal-bell: hsl(0, 0%, 94%);
   --aqueduct: hsl(185, 38%, 56%);
   --aqueduct-50: hsla(185, 38%, 56%, 0.5);
   --porpoise-place: hsl(189, 82%, 27%);
@@ -34,14 +34,14 @@ body {
 header {
   font-family: "Barrio", sans-serif;
   font-size: 3rem;
-  color: hsl(0, 0%, 94%);
+  color: var(--crystal-bell);
   margin-bottom: 1rem;
   text-align: center;
 }
 
 .icon {
   font-size: 2rem;
-  color: hsl(185, 38%, 56%);
+  color: var(--aqueduct);
   transition: color 0.3s ease;
 }
 
@@ -51,7 +51,7 @@ header {
 }
 
 .list-container {
-  background-color: hsl(0, 0%, 94%);
+  background-color: var(--crystal-bell);
   min-height: 60vh;
   min-width: 350px;
   border-radius: 1rem;

@@ -17,3 +17,7 @@ export function formatDate(date) {
 
   return `${month} ${day}, ${year}`;
 }
+
+export function createId(items) {
+  return Math.max(...items.map((item) => item.id), 0) + 1;
+}

@@ -5,6 +5,8 @@ import TodoList from "./TodoList";
 import BottomBar from "./BottomBar.jsx";
 import DATA from "../data.js";
 
+import { createId } from "../utilities/utilities.js";
+
 let ITEMS = [...DATA];
 
 export default function TodoCard() {
@@ -38,6 +40,16 @@ export default function TodoCard() {
     setTodoList((prevList) => prevList.filter((item) => item.id !== itemId));
   }
 
+  function handleAddItem() {
+    const newItem = {
+      id: createId(ITEMS),
+      todo: `Task #${ITEMS.length}`,
+      completed: false,
+    };
+    ITEMS.push(newItem);
+    handlePageChange("not-done");
+  }
+
   return (
     <section className="list-container">
       <PaginationButtons
@@ -49,7 +61,7 @@ export default function TodoCard() {
         onItemStateChange={handleItemStateChange}
         onItemDeletion={handleItemDeletion}
       />
-      <BottomBar />
+      <BottomBar onAddItem={handleAddItem} />
     </section>
   );
 }

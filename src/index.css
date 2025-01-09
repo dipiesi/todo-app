@@ -72,30 +72,6 @@ header {
   gap: 1rem;
 }
 
-.pagination-container {
-  text-align: center;
-}
-
-.pagination-btn {
-  border: none;
-  padding: 0.8rem 1rem;
-  margin: 0 1rem;
-  border-bottom: 2px solid var(--crystal-bell);
-  transition: border-color 0.1s ease;
-}
-
-.pagination-btn:hover .icon {
-  color: var(--aqueduct-50);
-}
-
-.pagination-btn.active {
-  border-bottom: 2px solid var(--aqueduct);
-}
-
-.pagination-btn.active:hover {
-  border-bottom: 2px solid var(--aqueduct-50);
-}
-
 ul {
   display: flex;
   flex-direction: column;
@@ -122,9 +98,14 @@ ul {
   margin-right: 0.8rem;
 }
 
-.item-card .completed {
+.item-card .completed,
+.item-card .checkbox:hover ~ input {
   text-decoration: line-through;
   color: var(--porpoise-place-50);
+}
+
+.item-card .checkbox:hover ~ input {
+  text-decoration: line-through;
 }
 
 .item-card input {

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import PaginationButtons from "./PaginationButtons";
+import PaginationButtons from "./Pagination Buttons/PaginationButtons";
 import TodoList from "./TodoList";
 import BottomBar from "./BottomBar.jsx";
 import DATA from "../data.js";
@@ -41,7 +41,7 @@ export default function TodoCard() {
   function handleAddItem() {
     const newItem = {
       id: createId(items),
-      todo: `Task #${[...items].filter((item) => !item.completed).length + 1}`,
+      todo: `Task #${[...items].filter((item) => !item.completed).length}`,
       completed: false,
     };
     setItems((prevList) => [...prevList, newItem]);

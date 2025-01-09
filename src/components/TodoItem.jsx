@@ -10,7 +10,7 @@ export default function TodoItem({
     <li>
       <div className="item-card">
         <span
-          className="material-symbols-outlined icon"
+          className="material-symbols-outlined icon checkbox"
           onClick={() => onItemStateChange(item.id)}
         >
           {item.completed ? "check_circle" : "radio_button_unchecked"}

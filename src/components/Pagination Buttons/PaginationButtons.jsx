@@ -12,12 +12,14 @@ export default function PaginationButtons({ onPageChange, currentPage }) {
         <span className="material-symbols-outlined icon">
           radio_button_unchecked
         </span>
+        <div className="custom-line"></div>
       </button>
       <button
         onClick={() => handleClick("done")}
         className={"pagination-btn " + (currentPage === "done" && "active")}
       >
         <span className="material-symbols-outlined icon">check_circle</span>
+        <div className="custom-line"></div>
       </button>
     </div>
   );
